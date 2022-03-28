@@ -1,0 +1,142 @@
+<button class="btn btn-primary" (click)="getHtmlFileContent(HtmlFilePath)">
+  Get Content
+</button>
+<router-outlet></router-outlet>
+
+<ng-container *ngIf="contentActive">
+  <div
+    class="table-responsive"
+    *ngIf="
+      htmlContent.translocoModuleData &&
+      htmlContent.translocoModuleData.length > 0
+    "
+  >
+    <h5>Transloco module</h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Content Details</th>
+          <th scope="col">Label</th>
+          <th scope="col">English</th>
+          <th scope="col">Spanish</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of htmlContent.translocoModuleData; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td class="me-5">
+            {{ item }}
+          </td>
+          <td>
+            <input
+              class="form-control"
+              type="text"
+              style="width: 500px"
+              placeholder="{{ item.slice(12, item.length - 4) }}"
+            />
+          </td>
+          <td>
+            <label>
+              {{ getEnglishJsonData(item) }}
+            </label>
+          </td>
+          <td>
+            <label>
+              {{ getSpanishJsonData(item) }}
+            </label>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div
+    class="table-responsive"
+    *ngIf="htmlContent.NeedToConvert && htmlContent.NeedToConvert.length > 0"
+  >
+    <h5>Not Converted module</h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Content Details</th>
+          <th scope="col">Label</th>
+          <th scope="col">English</th>
+          <th scope="col">Spanish</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of htmlContent.NeedToConvert; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td class="me-5">
+            {{ item }}
+          </td>
+          <td>
+            <input class="form-control" #jsonKey type="text" />
+          </td>
+          <td>
+            <input
+              class="form-control"
+              #englishData
+              type="text"
+              name="EnglishTranslate"
+            />
+          </td>
+          <td>
+            <input
+              class="form-control"
+              #spanishData
+              type="text"
+              name="SpanishTranslate"
+            />
+          </td>
+          <td>
+            <button
+              class="btn btn-primary"
+              style="margin: 10px"
+              (click)="
+                updateEnglishJson(jsonKey.value, englishData.value, item)
+              "
+              (click)="
+                updateSpanishJson(jsonKey.value, spanishData.value, item)
+              "
+              (click)="updateHtmlJson(item, jsonKey.value)"
+            >
+              Update
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div
+    class="table-responsive"
+    *ngIf="
+      htmlContent.bindedProperties && htmlContent.bindedProperties.length > 0
+    "
+  >
+    <h5>Binding Properties module</h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Content Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of htmlContent.bindedProperties; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td class="me-5">
+            {{ item }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-container>
+
+<!-- <ng-template [ngTemplateOutlet]="alert" [ngOutletContext]="context">
+  <div class="alert alert-primary" role="alert">Updated Successfully</div>
+</ng-template> -->

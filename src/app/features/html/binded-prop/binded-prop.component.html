@@ -1,0 +1,13 @@
+<mat-accordion
+  class="example-headers-align"
+  *ngFor="let item of this.htmlSer.htmlFiles | keyvalue"
+  multi
+>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ item.key }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
+</mat-accordion>

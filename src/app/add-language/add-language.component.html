@@ -1,0 +1,15 @@
+<div class="example-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Select Language</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let item of languages.text" [value]="item.language"
+        >{{ item.language }} ({{ item.code }})</mat-option
+      >
+    </mat-select>
+    <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+  </mat-form-field>
+
+  <button style="margin: 10px" class="btn btn-primary" (click)="generateJson()">
+    Generate JSON
+  </button>
+</div>

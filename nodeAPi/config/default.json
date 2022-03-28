@@ -1,0 +1,14 @@
+{
+  "modulePaths": {
+    "english": {
+      "ModuleAPS": "C:\\Code\\APS\\UI\\003_inlandnet\\src\\assets\\i18n\\aps\\en.json",
+      "ModuleADM": "C:\\Users\\ABS069\\Code\\HtmlMultiLanguageTranslator\\adm\\en.json",
+      "ModuleInlandnet": ""
+    },
+    "spanish": {
+      "ModuleAPS": "C:\\Code\\APS\\UI\\003_inlandnet\\src\\assets\\i18n\\aps\\es.json",
+      "ModuleADM": "C:\\Users\\ABS069\\Code\\HtmlMultiLanguageTranslator\\adm\\es.json",
+      "ModuleInlandnet": ""
+    }
+  }
+}

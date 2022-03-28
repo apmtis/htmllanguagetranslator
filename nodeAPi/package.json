@@ -1,0 +1,27 @@
+{
+  "name": "nodeapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/translate": "^6.3.1",
+    "body-parser": "^1.19.2",
+    "config": "^3.3.7",
+    "cors": "^2.8.5",
+    "domhandler": "^4.3.0",
+    "dotenv": "^16.0.0",
+    "edit-json-file": "^1.7.0",
+    "express": "^4.17.3",
+    "filehound": "^1.17.5",
+    "html-dom-parser": "^1.1.0",
+    "html-to-text": "^8.1.0",
+    "htmlparser2": "^7.2.0",
+    "jsdom": "^19.0.0",
+    "json-schema-traverse": "^1.0.0"
+  }
+}

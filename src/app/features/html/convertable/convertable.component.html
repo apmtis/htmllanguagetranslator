@@ -1,0 +1,185 @@
+<mat-accordion
+  class="example-headers-align"
+  *ngFor="let item of this.htmlSer.htmlFiles | keyvalue"
+  multi
+>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ item.key }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div
+      class="table-responsive"
+      *ngIf="item.value.NeedToConvert && item.value.NeedToConvert.length > 0"
+    >
+      <label style="margin-right: 10px">*transloco="let trsl;<b></b></label>
+      <button class="btn btn-primary" ngxClipboard [cbContent]="keyCode">
+        <i class="bi bi-clipboard"></i>Copy
+      </button>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Content Details</th>
+            <th scope="col">Label</th>
+            <th scope="col">English</th>
+            <th scope="col">Spanish</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let converible of item.value.NeedToConvert; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td class="me-5">
+              {{ converible }}
+            </td>
+            <td>
+              <input
+                class="form-control"
+                #jsonKey
+                type="text"
+                (keyup)="getKeyCode(jsonKey.value, item)"
+              />
+
+              {{ getKeyCode(jsonKey.value, item) }}
+              <button
+                class="btn btn-primary"
+                ngxClipboard
+                [cbContent]="getKeyCode(jsonKey.value, item)"
+              >
+                Copy
+              </button>
+              <button
+                class="btn btn-primary"
+                style="margin: 10px"
+                (click)="updateHtmlJson(item, converible, jsonKey.value)"
+              >
+                Update HTML
+              </button>
+            </td>
+            <td>
+              <input
+                class="form-control"
+                #englishData
+                type="text"
+                name="EnglishTranslate"
+              />
+            </td>
+            <td>
+              <input
+                class="form-control"
+                #spanishData
+                type="text"
+                name="SpanishTranslate"
+              />
+            </td>
+            <td>
+              <button
+                class="btn btn-primary"
+                style="margin: 10px"
+                (click)="
+                  updateEnglishJson(item, englishData.value, jsonKey.value)
+                "
+                (click)="
+                  updateSpanishJson(item, spanishData.value, jsonKey.value)
+                "
+              >
+                Update
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- <ng-container
+      *ngIf="item.value.NeedToConvert && item.value.NeedToConvert.length > 0"
+    > -->
+
+    <!-- Element need to Convert -->
+    <!-- <div class="table-responsive">
+        <table
+          mat-table
+          [dataSource]="item.value.NeedToConvert"
+          class="mat-elevation-z8"
+        >
+          <ng-container matColumnDef="Content">
+            <th mat-header-cell *matHeaderCellDef>Content</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Label">
+            <th mat-header-cell *matHeaderCellDef>Label</th>
+            <td mat-cell *matCellDef="let element">
+              <input class="form-control input-sm" #jsonKey type="text" />
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="English">
+            <th mat-header-cell *matHeaderCellDef>English</th>
+            <td mat-cell *matCellDef="let element">
+              <input
+                class="form-control input-sm"
+                name="englishTranslate"
+                #englishData
+                type="text"
+              />
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Spanish">
+            <th mat-header-cell *matHeaderCellDef>Spanish</th>
+            <td mat-cell *matCellDef="let element">
+              <input
+                class="form-control input-sm"
+                name="spanishTranslate"
+                #spanishData
+                type="text"
+              />
+            </td>
+          </ng-container> -->
+
+    <!-- <ng-container *ngFor="let language of language">
+            <ng-container [matColumnDef]="language">
+              <th mat-header-cell *matHeaderCellDef>{{ language }}</th>
+              <td mat-cell *matCellDef="let element">
+                <input
+                  #language
+                  [ngModel]="element[language]"
+                  (blur)="(element[language])=$event.target.value"
+                  class="form-control"
+                  type="text"
+                />
+              </td>
+            </ng-container>
+          </ng-container> -->
+
+    <!-- <ng-container matColumnDef="Update">
+            <th mat-header-cell *matHeaderCellDef>Update</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                (click)="
+                  updateEnglishJson(item, englishData.value, jsonKey.value)
+                "
+                (click)="
+                  updateSpanishJson(item, spanishData.value, jsonKey.value)
+                "
+                (click)="updateHtmlJson(item, element, jsonKey.value)"
+                class="btn btn-primary"
+                style="margin: 10px"
+              >
+                Update
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div> -->
+    <!-- </ng-container> -->
+  </mat-expansion-panel>
+</mat-accordion>
